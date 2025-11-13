@@ -32,7 +32,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="11">
-                                        <p class="text-center pt-3">Tidak Ada Data</p>
+                                        <p class="pt-3 text-center">Tidak Ada Data</p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -47,7 +47,7 @@
                                         <td>{{ $item->address }}</td>
                                         <td>{{ $item->religion }}</td>
                                         <td>{{ $item->marital_status }}</td>
-                                        <td>{{ $item->occipation }}</td>
+                                        <td>{{ $item->occupation }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->status }}</td>
                                         <td>
