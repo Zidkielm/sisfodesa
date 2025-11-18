@@ -169,7 +169,7 @@
 							@foreach ([
 								(object)[
 									'label' => 'Aktif',
-									'value' => 'Active'
+									'value' => 'active'
 						],
 								(object)[
 									'label' => 'Pindah',
