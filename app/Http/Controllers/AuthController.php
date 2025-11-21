@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    public function login()
+    {
+        return view('pages.auth.login');
+    }
+
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
@@ -17,11 +22,13 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
+            dd(Auth::user());
+
             return redirect()->intended('dashboard');
         }
 
         return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
+            'email' => 'Terjadi kesalahan, periksa lagi email atau password anda.',
         ])->onlyInput('email');
     }
 }
