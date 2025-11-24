@@ -22,7 +22,12 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            dd(Auth::user());
+            $userStatus = Auth::user()->status;
+            if ($userStatus == 'submitted') {
+                return back()->withErrors(['email' => 'Akun anda belum mendapat persetujuan admin',]);
+            } elseif ($userStatus == 'rejected') {
+                return back()->withErrors(['email' => 'Akun anda telah ditolak admin',]);
+            }
 
             return redirect()->intended('dashboard');
         }
