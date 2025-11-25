@@ -36,4 +36,15 @@ class AuthController extends Controller
             'email' => 'Terjadi kesalahan, periksa lagi email atau password anda.',
         ])->onlyInput('email');
     }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
+    }
 }
