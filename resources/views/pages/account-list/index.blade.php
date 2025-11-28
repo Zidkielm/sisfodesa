@@ -21,13 +21,14 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-body">
-                    <div style="overflow-x-auto">
-                        <table class="table-bordered table-hovered table" style="min-width: 100%;">
+                    <div style="overflow-x: auto;">
+                        <table class="table-bordered table-hovered table">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -47,26 +48,35 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>
+                                                @if ($item->status == 'approved')
+                                                    <span class="badge badge-success">Aktif</span>
+                                                @else
+                                                    <span class="badge badge-danger">Tidak Aktif</span>
+                                                @endif
+                                            </td>
+                                            <td>
                                                 <div class="d-flex" style="gap: 10px">
-                                                    <button type="button" class="btn btn-sm btn-danger"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#confirmationReject-{{ $item->id }}">
-                                                        Tolak
-                                                    </button>
-                                                    <button type="button" class="btn btn-sm btn-success"
-                                                        data-bs-toggle="modal"
-                                                        data-bs-target="#confirmationApprove-{{ $item->id }}">
-                                                        Setujui
-                                                    </button>
+                                                    @if ($item->status == 'approved')
+                                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#confirmationReject-{{ $item->id }}">
+                                                            Non-Aktifkan Akun
+                                                        </button>
+                                                    @else
+                                                        <button type="button" class="btn btn-sm btn-outline-success"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#confirmationApprove-{{ $item->id }}">
+                                                            Aktifkan AKun
+                                                        </button>
+                                                    @endif
                                                 </div>
                                             </td>
                                         </tr>
-                                        @include('pages.account-request.confirmation-approve')
-                                        @include('pages.account-request.confirmation-reject')
+                                        @include('pages.account-list.confirmation-approve')
+                                        @include('pages.account-list.confirmation-reject')
                                     @endforeach
                                 </tbody>
                             @endif
-
                         </table>
                     </div>
                 </div>
