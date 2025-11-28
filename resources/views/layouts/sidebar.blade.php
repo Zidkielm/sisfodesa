@@ -2,19 +2,24 @@
     $menus = [
         1 => [
             (object) [
-                'title' => 'dashboard',
+                'title' => 'Dashboard',
                 'path' => 'dashboard',
                 'icon' => 'fas fa-fw fa-tachometer-alt',
             ],
             (object) [
-                'title' => 'penduduk',
+                'title' => 'Penduduk',
                 'path' => 'resident',
                 'icon' => 'fas fa-fw fa-table',
             ],
             (object) [
+                'title' => 'Daftar Akun',
+                'path' => 'account-list',
+                'icon' => 'fas fa-fw fa-users',
+            ],
+            (object) [
                 'title' => 'Permintaan Akun',
                 'path' => 'account-request',
-                'icon' => 'fas fa-fw fa-user',
+                'icon' => 'fas fa-fw fa-clipboard-list',
             ],
         ],
         2 => [
