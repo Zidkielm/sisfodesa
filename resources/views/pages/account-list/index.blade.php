@@ -21,8 +21,8 @@
         <div class="col">
             <div class="card shadow">
                 <div class="card-body">
-                    <div style="overflow-x: auto;">
-                        <table class="table-bordered table-hovered table">
+                    <div style="overflow-x-auto">
+                        <table class="table-bordered table-hovered table" style="min-width: 100%;">
                             <thead>
                                 <tr>
                                     <th>No</th>
