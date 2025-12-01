@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -16,6 +17,10 @@ class UserController extends Controller
     }
     public function account_approval(Request $request, $userId)
     {
+        $request->validate([
+            'for' => ['required', Rule::in(['aceepted', 'rejected', 'activate', 'deactivate'])],
+        ]);
+
         $for = $request->input('for');
         $user = User::findOrFail($userId);
         $user->status = ($for == 'approve' || $for == 'activate') ? 'approved' : 'rejected';
