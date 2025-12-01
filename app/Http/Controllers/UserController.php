@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resident;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -12,8 +13,10 @@ class UserController extends Controller
     public function account_request_view()
     {
         $users = User::where('status', 'submitted')->get();
+        $residents = Resident::where('user_id', null)->get();
         return view('pages.account-request.index', [
             'users' => $users,
+            'residents' => $residents,
         ]);
     }
     public function account_approval(Request $request, $userId)
