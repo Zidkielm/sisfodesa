@@ -15,8 +15,9 @@
                     <input type="hidden" name="for" value="approve">
                     <span>Apakah anda yakin akan menyetujui akun ini?</span>
                     <div class="form-group mt-3">
-                        <label for="user_id">Pilih Penduduk</label>
-                        <select name="user_id" id="user_id" class="form-control">
+                        <label for="resident_id">Pilih Penduduk</label>
+                        <select name="resident_id" id="resident_id" class="form-control">
+                            <option value="">Tidak Ada</option>
                             @foreach ($residents as $item)
                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                             @endforeach
