@@ -53,15 +53,23 @@
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->status }}</td>
                                         <td>
-                                            <div class="d-flex">
+                                            <div class="d-flex align-items-center" style="gap: 10px;">
                                                 <a href="/resident/{{ $item->id }}"
-                                                    class="d-inline-block btn btn-sm btn-warning mr-2">
+                                                    class="d-inline-block btn btn-sm btn-warning">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
                                                 <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                                     data-bs-target="#confirmationDelete-{{ $item->id }}">
                                                     <i class="fas fa-eraser"></i>
                                                 </button>
+                                                @if (!is_null($item->user_id))
+                                                    <button type="button" class="btn btn-sm btn-outline-info"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#detailAccount-{{ $item->id }}">
+                                                        Lihat Akun
+                                                    </button>
+                                                    @include('pages.resident.detail-account')
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>
