@@ -22,13 +22,22 @@ class UserController extends Controller
     public function account_approval(Request $request, $userId)
     {
         $request->validate([
-            'for' => ['required', Rule::in(['aceepted', 'rejected', 'activate', 'deactivate'])],
+            'for' => ['required', Rule::in(['approve', 'rejected', 'activate', 'deactivate'])],
+            'resident_id' => ['nullable', 'exists:residents,id']
         ]);
 
         $for = $request->input('for');
         $user = User::findOrFail($userId);
         $user->status = ($for == 'approve' || $for == 'activate') ? 'approved' : 'rejected';
         $user->save();
+
+        $residentId = $request->input('resident_id');
+
+        if ($request->has('resident_id') && isset($residentId)) {
+            Resident::where('id', $residentId)->update([
+                'user_id' => $user->id,
+            ]);
+        }
 
         if ($for == 'activate') {
             return back()->with('success', 'berhasil mengaktifkan akun');
